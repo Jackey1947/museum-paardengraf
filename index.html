@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Het Paardengraf van Borgharen</title>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg:          #0e0b06;
+            --bg-surface:  #1a1508;
+            --bg-elevated: #231b0b;
+            --bg-card:     #2a2010;
+            --gold:        #c9a84c;
+            --gold-light:  #dfc06e;
+            --gold-dim:    #7a6228;
+            --text:        #ede3ca;
+            --text-dim:    #a8906a;
+            --text-muted:  #6a5538;
+            --border:      #352810;
+            --header-h:    64px;
+            --nav-h:       72px;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* ── HOOFD LAYOUT ── */
+        #app {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            height: -webkit-fill-available;
+        }
+
+        /* ── HEADER ── */
+        #header {
+            flex-shrink: 0;
+            height: var(--header-h);
+            background: linear-gradient(180deg, #000000 0%, #160f04 100%);
+            border-bottom: 1px solid var(--gold-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 24px;
+        }
+
+        #header .header-inner {
+            text-align: center;
+        }
+
+        #header h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 17px;
+            font-weight: normal;
+            color: var(--gold);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        #header .header-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            margin-top: 3px;
+        }
+
+        /* ── INHOUD ── */
+        #content {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screen {
+            position: absolute;
+            inset: 0;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            display: none;
+            background: var(--bg);
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* ── NAVIGATIE ── */
+        #nav {
+            flex-shrink: 0;
+            height: var(--nav-h);
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: stretch;
+        }
+
+        .nav-btn {
+            flex: 1;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            font-family: -apple-system, 'Helvetica Neue', sans-serif;
+            font-weight: 500;
+            position: relative;
+            touch-action: manipulation;
+            padding: 0 4px;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .nav-btn.active {
+            color: var(--gold);
+        }
+
+        .nav-btn.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 18%;
+            right: 18%;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 0 0 2px 2px;
+        }
+
+        .nav-btn:active {
+            opacity: 0.65;
+        }
+
+        .nav-sep {
+            width: 1px;
+            background: var(--border);
+            margin: 14px 0;
+            flex-shrink: 0;
+        }
+
+        /* ══════════════════════════════
+           HOME SCHERM
+        ══════════════════════════════ */
+        .home-hero {
+            position: relative;
+            width: 100%;
+            height: 52vw;
+            min-height: 240px;
+            max-height: 380px;
+            overflow: hidden;
+        }
+
+        .home-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 25%;
+            display: block;
+        }
+
+        .home-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(14,11,6,0.05) 0%,
+                rgba(14,11,6,0.25) 55%,
+                rgba(14,11,6,0.88) 88%,
+                rgba(14,11,6,1.00) 100%
+            );
+        }
+
+        .home-hero-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 28px 20px;
+        }
+
+        .hero-tag {
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        .home-hero-text h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 26px;
+            font-weight: normal;
+            color: var(--text);
+            line-height: 1.25;
+        }
+
+        .home-body {
+            padding: 22px 28px 0;
+        }
+
+        .home-body p {
+            font-size: 16px;
+            line-height: 1.75;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-top: 2px solid var(--gold-dim);
+            border-radius: 6px;
+            padding: 16px 14px;
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: Georgia, serif;
+            font-size: 30px;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 7px;
+        }
+
+        .stat-lbl {
+            font-size: 12px;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        /* ══════════════════════════════
+           HERBRUIKBARE COMPONENTEN
+        ══════════════════════════════ */
+
+        /* Volledige breedte afbeelding */
+        .full-img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .img-caption {
+            padding: 8px 28px 14px;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Sectie-kop */
+        .sec-head {
+            padding: 20px 28px 16px;
+        }
+
+        .sec-tag {
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        .sec-title {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 26px;
+            font-weight: normal;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .sec-sub {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* Lopende tekst */
+        .body {
+            padding: 4px 28px 18px;
+        }
+
+        .body p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-dim);
+            margin-bottom: 14px;
+        }
+
+        .body p:last-child { margin-bottom: 0; }
+
+        /* Citaat-blok */
+        .quote {
+            margin: 4px 28px 18px;
+            background: var(--bg-elevated);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 6px 6px 0;
+            padding: 16px 20px;
+        }
+
+        .quote p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text);
+            font-style: italic;
+        }
+
+        .quote-source {
+            padding: 0 28px 18px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Feiten-lijst */
+        .fact-list {
+            list-style: none;
+            padding: 0 28px 18px;
+        }
+
+        .fact-list li {
+            padding: 11px 0 11px 18px;
+            border-bottom: 1px solid var(--border);
+            font-size: 15px;
+            color: var(--text-dim);
+            line-height: 1.55;
+            position: relative;
+        }
+
+        .fact-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--gold-dim);
+        }
+
+        .fact-list li:last-child { border-bottom: none; }
+
+        /* Sectie-label (boven een lijst) */
+        .list-label {
+            padding: 6px 28px 10px;
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold-dim);
+        }
+
+        /* Twee afbeeldingen naast elkaar */
+        .img-duo {
+            display: flex;
+            gap: 8px;
+            padding: 0 28px 18px;
+        }
+
+        .img-duo img {
+            flex: 1;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            display: block;
+        }
+
+        /* Gemarkeerde "u bevindt zich hier" band */
+        .location-banner {
+            margin: 0 28px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--gold-dim);
+            border-radius: 6px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .location-marker {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--gold-dim);
+            border: 2px solid var(--gold);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .location-marker span {
+            font-size: 16px;
+            color: var(--gold-light);
+            line-height: 1;
+        }
+
+        .location-text strong {
+            display: block;
+            font-size: 14px;
+            color: var(--gold-light);
+            margin-bottom: 3px;
+            font-family: Georgia, serif;
+        }
+
+        .location-text p {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        /* Scheidingslijn */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 4px 28px 18px;
+        }
+
+        /* ══════════════════════════════
+           DATERING: theorie-kaarten
+        ══════════════════════════════ */
+        .theory-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 0 28px 18px;
+        }
+
+        .theory-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .theory-card.highlight {
+            border-top: 2px solid var(--gold);
+        }
+
+        .theory-head {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .theory-year {
+            font-family: Georgia, serif;
+            font-size: 26px;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .theory-who {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        .theory-body {
+            padding: 10px 14px 12px;
+        }
+
+        .theory-body ul {
+            list-style: none;
+        }
+
+        .theory-body ul li {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.5;
+            padding: 5px 0 5px 12px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .theory-body ul li::before {
+            content: '·';
+            position: absolute;
+            left: 0;
+            color: var(--gold-dim);
+            font-size: 16px;
+            line-height: 1.2;
+        }
+
+        .theory-body ul li:last-child { border-bottom: none; }
+
+        /* ══════════════════════════════
+           VERHAAL: persoons-kaart
+        ══════════════════════════════ */
+        .person-card {
+            margin: 4px 28px 18px;
+            display: flex;
+            gap: 0;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .person-card img {
+            width: 100px;
+            object-fit: cover;
+            object-position: center top;
+            flex-shrink: 0;
+            display: block;
+        }
+
+        .person-info {
+            padding: 14px 16px;
+        }
+
+        .person-name {
+            font-family: Georgia, serif;
+            font-size: 17px;
+            color: var(--text);
+            margin-bottom: 3px;
+        }
+
+        .person-role {
+            font-size: 11px;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .person-info p {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* ══════════════════════════════
+           VIDEO SCHERM
+        ══════════════════════════════ */
+        .video-wrap {
+            padding: 0 28px 18px;
+        }
+
+        .video-box {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #000;
+        }
+
+        .video-box video {
+            width: 100%;
+            display: block;
+        }
+
+        /* Bodem opvulling */
+        .pad-bottom { height: 28px; }
+
+    </style>
+</head>
+<body>
+<div id="app">
+
+    <!-- ═══ HEADER ═══ -->
+    <header id="header">
+        <div class="header-inner">
+            <h1>Het Paardengraf van Borgharen</h1>
+            <div class="header-sub">Helpoort · Maastricht · 17e eeuw</div>
+        </div>
+    </header>
+
+    <!-- ═══ INHOUD ═══ -->
+    <main id="content">
+
+        <!-- ────────────────────────────
+             SCHERM 1 — HOME
+        ──────────────────────────── -->
+        <section id="screen-home" class="screen active">
+            <div class="home-hero">
+                <img src="Schilderij-Joseph_parrocel.jpg"
+                     alt="Het beleg van Maastricht, geschilderd door Joseph Parrocel, circa 1673">
+                <div class="home-hero-overlay"></div>
+                <div class="home-hero-text">
+                    <div class="hero-tag">Archeologische ontdekking · 2010</div>
+                    <h2>Het grootste<br>paardengraf van Europa</h2>
+                </div>
+            </div>
+            <div class="home-body">
+                <p>In mei 2010 werd bij Borgharen, ten noorden van Maastricht, het grootste paardengraf van Europa ontdekt. Zevenenzestig oorlogspaarden, begraven in één lange greppel — getuigen van een 17e-eeuwse belegering die tot diep in de bodem was weggezonken.</p>
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-num">67</div>
+                        <div class="stat-lbl">paardenskeletten in één greppel</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">50 m</div>
+                        <div class="stat-lbl">lengte van de belegeringsgreppel</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">1673</div>
+                        <div class="stat-lbl">meest waarschijnlijke datering</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">nr. 1</div>
+                        <div class="stat-lbl">grootste paardengraf in Europa</div>
+                    </div>
+                </div>
+            </div>
+            <div class="pad-bottom"></div>
+        </section>
+
+        <!-- ────────────────────────────
+             SCHERM 2 — DE ONTDEKKING
+        ──────────────────────────── -->
+        <section id="screen-ontdekking" class="screen">
+            <img src="Luchtopnames%202010.jpg"
+                 alt="Luchtopname van de opgraving in Borgharen, mei 2010"
+                 class="full-img" style="max-height: 300px;">
+            <p class="img-caption">Luchtopname van de opgraving · Borgharen, mei 2010 · foto: Ralph Faun</p>
+
+            <div class="sec-head">
+                <div class="sec-tag">Mei 2010 · Borgharen</div>
+                <h2 class="sec-title">De Ontdekking</h2>
+                <p class="sec-sub">Een vondst die niemand verwachtte</p>
+            </div>
+
+            <div class="body">
+                <p>Op een meidag in 2010 leggen archeologen bot na bot bloot tijdens bodemonderzoek van het Consortium Grensmaas aan de Trichtervoogdenstraat in Borgharen. Rugwervels, hoeven, schedels — vrijwel op één lijn. Elke schep vergroot de verbijstering.</p>
+                <p>Uiteindelijk geeft de bodem 67 skeletten prijs, gerangschikt over een lengte van bijna 40 meter. De dieren liggen in onnatuurlijke houdingen met sterk opgetrokken benen of gekromde ruggen — door lijkstijfheid, of de ruwe manier waarop ze de greppel in werden getrokken.</p>
+            </div>
+
+            <div class="quote">
+                <p>"Het was fantastisch, uniek. Ze lagen helemaal door elkaar; de kop van de een tussen de benen van de ander. En elke dag kwamen er meer botten uit, het hield niet op."</p>
+            </div>
+            <div class="quote-source">— Mat Delarue, amateurarcheoloog</div>
+
+            <img src="foto_W.Lem2.jpg"
+                 alt="Open dag bij de opgraving, zomer 2010, met bezoekers en levende paarden"
+                 class="full-img" style="max-height: 260px;">
+            <p class="img-caption">Open dag bij de opgraving, zomer 2010 — bezoekers en paarden bij de vindplaats</p>
+
+            <div class="body">
+                <p>Het paardengraf veroorzaakt in de zomer van 2010 een ware gekte. Bij de open dag wordt de deur platgelopen. Zelfs daarna bezoeken nieuwsgierigen op eigen houtje de vindplaats — soms trekken ze aan poten en verdwijnen hoefijzers.</p>
+            </div>
+
+            <div class="list-label">De vondst in cijfers</div>
+            <ul class="fact-list">
+                <li>67 tot 69 paardenskeletten, gestapeld in één belegeringsgreppel</li>
+                <li>De greppel meet circa 50 bij 2 meter</li>
+                <li>Vindplaats: Trichtervoogdenstraat 68, Borgharen</li>
+                <li>Ontdekt tijdens bodemonderzoek voor het Consortium Grensmaas</li>
+                <li>Nooit eerder werd in Europa zo'n groot paardengraf gevonden</li>
+            </ul>
+            <div class="pad-bottom"></div>
+        </section>
+
+        <!-- ────────────────────────────
+             SCHERM 3 — DE VONDSTEN
+        ──────────────────────────── -->
+        <section id="screen-vondsten" class="screen">
+            <div class="sec-head" style="padding-top: 22px;">
+                <div class="sec-tag">Wat is er gevonden?</div>
+                <h2 class="sec-title">De Vondsten</h2>
+                <p class="sec-sub">Skeletten, wapens en paardentuig</p>
+            </div>
+
+            <div class="img-duo">
+                <img src="foto_W.Lem1.jpg"
+                     alt="Paardenskeletten in de opgraving, close-up met meetlat">
+                <img src="Skelet%20in%20Helpoort.jpg"
+                     alt="Paardenskelet tentoongesteld in de Helpoort, Maastricht">
+            </div>
+
+            <div class="location-banner">
+                <div class="location-marker"><span>&#9679;</span></div>
+                <div class="location-text">
+                    <strong>U bevindt zich hier</strong>
+                    <p>Het skelet in de vitrine naast u is afkomstig uit het paardengraf van Borgharen.</p>
+                </div>
+            </div>
+
+            <div class="list-label">Aangetroffen materiaal</div>
+            <ul class="fact-list">
+                <li>67–69 paardenskeletten, overwegend volwassen hengsten</li>
+                <li>Tientallen hoefijzers</li>
+                <li>Loden musketkogels</li>
+                <li>Delen van tuigage en leren riemen</li>
+                <li>In acht schedels: een kogel — bewijs van een genadeschot of frontale charge</li>
+            </ul>
+
+            <div class="list-label">De paarden</div>
+            <ul class="fact-list">
+                <li>Leeftijd: 4 tot 10 jaar — jonge, fitte cavaleriedieren</li>
+                <li>Slank en wendbaar, niet de zware trekpaarden uit de streek</li>
+                <li>Isotopenonderzoek bewijst: niet afkomstig uit de regio Maastricht</li>
+                <li>Breuken en sporen van excessief geweld — ze kwamen van een slagveld</li>
+                <li>Een archozoölogische studie wees uit dat het vrijwel zeker oorlogspaarden zijn</li>
+            </ul>
+            <div class="pad-bottom"></div>
+        </section>
+
+        <!-- ────────────────────────────
+             SCHERM 4 — DATERING
+        ──────────────────────────── -->
+        <section id="screen-datering" class="screen">
+            <img src="Lodewijck%20XIV%20voor%20Maastricht.jpg"
+                 alt="Lodewijk XIV te paard voor Maastricht, barokke schilderij"
+                 class="full-img" style="max-height: 320px; object-position: center 20%;">
+            <p class="img-caption">Lodewijk XIV triomfantelijk te paard voor Maastricht · schilderij ca. 1673</p>
+
+            <div class="sec-head">
+                <div class="sec-tag">Het centrale vraagstuk</div>
+                <h2 class="sec-title">1632 of 1673?</h2>
+                <p class="sec-sub">Twee belegeringen, één massagraf</p>
+            </div>
+
+            <div class="body">
+                <p>Welke belegering deed de paarden sneuvelen? Er bestaan twee concurrerende theorieën, beide ondersteund door historische bronnen en archeologische vondsten.</p>
+            </div>
+
+            <div class="theory-grid">
+                <div class="theory-card">
+                    <div class="theory-head">
+                        <div class="theory-year">1632</div>
+                        <div class="theory-who">Frederik Hendrik</div>
+                    </div>
+                    <div class="theory-body">
+                        <ul>
+                            <li>Beleg op de Spanjaarden</li>
+                            <li>Kaarten tonen paardenschans op exact deze locatie</li>
+                            <li>Bronnen melden hevige ruitergevechten bij Borgharen</li>
+                            <li>Afgevallen na nieuw C14-onderzoek</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="theory-card highlight">
+                    <div class="theory-head">
+                        <div class="theory-year">1673</div>
+                        <div class="theory-who">Lodewijk XIV</div>
+                    </div>
+                    <div class="theory-body">
+                        <ul>
+                            <li>Franse circumvallatie past exact op de vindplaats</li>
+                            <li>Tienduizend cavaleriepaarden bij het beleg</li>
+                            <li>Franse munt (liard) gevonden bij menselijke resten</li>
+                            <li>Meest waarschijnlijk (Dijkman, 2024)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="body">
+                <p>Nieuwe C14-analyses van paardentanden beperkten de leefperiode tot 1650–1800, waarmee 1632 als optie verviel. Archeoloog Wim Dijkman projecteerde vervolgens de circumvallatielinie van 1673 — de complete ring van grondwallen en grachten waarmee de Fransen Maastricht isoleerden — op de vindplaats.</p>
+                <p>Het paste nagenoeg precies. De Fransen begroeven hun paarden in de belegeringsgracht die ze zelf al hadden gegraven.</p>
+            </div>
+
+            <div class="quote">
+                <p>"Ze hoefden ze alleen nog maar aan hun benen de greppel in te trekken."</p>
+            </div>
+            <div class="quote-source">— Wim Dijkman, archeoloog</div>
+
+            <div class="pad-bottom"></div>
+        </section>
+
+        <!-- ────────────────────────────
+             SCHERM 5 — HET VERHAAL
+        ──────────────────────────── -->
+        <section id="screen-verhaal" class="screen">
+            <div class="sec-head" style="padding-top: 22px;">
+                <div class="sec-tag">Het onderzoek</div>
+                <h2 class="sec-title">Het Mysterie Ontrafeld</h2>
+                <p class="sec-sub">Hoe Wim Dijkman het raadsel oploste</p>
+            </div>
+
+            <div class="person-card">
+                <img src="Wim%20Dijkman-In%20Helpoort.jpg"
+                     alt="Archeoloog Wim Dijkman bekijkt het skelet in de Helpoort">
+                <div class="person-info">
+                    <div class="person-name">Wim Dijkman</div>
+                    <div class="person-role">Archeoloog · Maastricht</div>
+                    <p>Voormalig curator van Centre Céramique. Hij liet op eigen kosten nieuwe C14-analyses uitvoeren en publiceerde zijn bevindingen bij een expositie over de Franse musketiers in Château de Vincennes — het Parijse kasteel waar Lodewijk XIV resideerde vóór Versailles.</p>
+                </div>
+            </div>
+
+            <div class="body">
+                <p>Het eerste officiële onderzoek wees op 1794 als meest waarschijnlijke datering — het jaar van de Franse Revolutionaire belegering. Het cruciale bewijs: een 18e-eeuws pijpenkopje en een gesp met paardentuig, gevonden onderin het graf.</p>
+                <p>Dijkman vond dit bewijs te pover. "Ik wilde het zeker weten." Nieuwe C14-technieken dateren de paarden tussen 1650 en 1800 — daarmee viel 1632 weg, maar ook 1794 klopte niet met de archeologische context.</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <img src="Schilderij-Joseph_parrocel.jpg"
+                 alt="Het beleg van Maastricht door Lodewijk XIV, schilderij Joseph Parrocel"
+                 class="full-img" style="max-height: 240px;">
+            <p class="img-caption">Gevechtsschilder Joseph Parrocel toont het beleg van 1673, met Lodewijk XIV te paard en dode paarden op de voorgrond</p>
+
+            <div class="body">
+                <p>De doorbraak: met moderne georeferentietechnieken projecteerde Dijkman de circumvallatielinie van 1673 op de huidige kaart. De circumvallatie was een complete ring van grondwallen en grachten waarmee de Fransen de stad volledig isoleerden. De linie viel nagenoeg precies samen met de vindplaats van het paardengraf.</p>
+                <p>Van het beleg van 1673 is bovendien bekend dat Lodewijk XIV een enorme troepenmacht te paard meevoerde — naar schatting tienduizend paarden verdeeld over honderden eskadrons. Bij die aantallen is het niet verwonderlijk dat er "hier een aantal het loodje hebben gelegd," aldus Dijkman.</p>
+            </div>
+
+            <div class="quote">
+                <p>"Paarden worden in Frankrijk met heel veel respect behandeld. Voor de Zonnekoning zelf waren de edele dieren bovendien onmisbaar voor zijn imago als groot veldheer."</p>
+            </div>
+            <div class="quote-source">— Wim Dijkman</div>
+
+            <div class="list-label">Waarom is dit graf zo zeldzaam?</div>
+            <ul class="fact-list">
+                <li>Op andere slagveldlocaties werden paardenbotten vroeger als meststof gebruikt</li>
+                <li>Bij de Slag bij Waterloo (20.000 doden) is geen enkel massagraf teruggevonden</li>
+                <li>Het afgelegen ligging van Borgharen heeft het graf onaangetast gelaten</li>
+                <li>Nergens in Europa zijn zoveel oorlogspaarden samen gevonden</li>
+            </ul>
+            <div class="pad-bottom"></div>
+        </section>
+
+        <!-- ────────────────────────────
+             SCHERM 6 — VIDEO
+        ──────────────────────────── -->
+        <section id="screen-video" class="screen">
+            <div class="sec-head" style="padding-top: 22px;">
+                <div class="sec-tag">Reportage</div>
+                <h2 class="sec-title">Bekijk het Verhaal</h2>
+                <p class="sec-sub">Het mysterie van het paardengraf</p>
+            </div>
+
+            <div class="video-wrap">
+                <div class="video-box">
+                    <video controls playsinline preload="metadata"
+                           poster="Luchtopnames%202010.jpg">
+                        <source src="Paardengraf%20Borgharen%20toch%20weer%20ouder.mp4"
+                                type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="body">
+                <p>Archeoloog Wim Dijkman legt uit waarom het paardengraf van Borgharen toch ouder blijkt dan aanvankelijk gedacht — en hoe hij dit stap voor stap heeft bewezen met nieuwe C14-analyses en historisch kaartmateriaal.</p>
+            </div>
+
+            <div class="pad-bottom"></div>
+        </section>
+
+    </main>
+
+    <!-- ═══ NAVIGATIE ═══ -->
+    <nav id="nav">
+        <button class="nav-btn active" onclick="toonScherm('home', this)">Home</button>
+        <div class="nav-sep"></div>
+        <button class="nav-btn" onclick="toonScherm('ontdekking', this)">Ontdekking</button>
+        <div class="nav-sep"></div>
+        <button class="nav-btn" onclick="toonScherm('vondsten', this)">Vondsten</button>
+        <div class="nav-sep"></div>
+        <button class="nav-btn" onclick="toonScherm('datering', this)">Datering</button>
+        <div class="nav-sep"></div>
+        <button class="nav-btn" onclick="toonScherm('verhaal', this)">Verhaal</button>
+        <div class="nav-sep"></div>
+        <button class="nav-btn" onclick="toonScherm('video', this)">Video</button>
+    </nav>
+
+</div>
+
+<script>
+    function toonScherm(id, knop) {
+        // Verberg alle schermen
+        document.querySelectorAll('.screen').forEach(function(s) {
+            s.classList.remove('active');
+        });
+
+        // Deactiveer alle navigatieknoppen
+        document.querySelectorAll('.nav-btn').forEach(function(b) {
+            b.classList.remove('active');
+        });
+
+        // Toon het gevraagde scherm
+        var scherm = document.getElementById('screen-' + id);
+        if (scherm) {
+            scherm.classList.add('active');
+            scherm.scrollTop = 0;
+        }
+
+        // Activeer de juiste knop
+        if (knop) knop.classList.add('active');
+    }
+
+    // Voorkom dubbel-tik-zoom op iOS
+    var laatsteTik = 0;
+    document.addEventListener('touchend', function(e) {
+        var nu = Date.now();
+        if (nu - laatsteTik < 300) {
+            e.preventDefault();
+        }
+        laatsteTik = nu;
+    }, { passive: false });
+
+    // Geen contextmenu
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+</script>
+</body>
+</html>
