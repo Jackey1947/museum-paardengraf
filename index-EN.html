@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>Het Paardengraf van Borgharen</title>
+    <title>The Horse Burial of Borgharen</title>
     <style>
         *, *::before, *::after {
             margin: 0;
@@ -40,7 +40,7 @@
             user-select: none;
         }
 
-        /* ── HOOFD LAYOUT ── */
+        /* ── MAIN LAYOUT ── */
         #app {
             display: flex;
             flex-direction: column;
@@ -115,7 +115,7 @@
             margin-top: 3px;
         }
 
-        /* ── INHOUD ── */
+        /* ── CONTENT ── */
         #content {
             flex: 1;
             overflow: hidden;
@@ -135,7 +135,7 @@
             display: block;
         }
 
-        /* ── NAVIGATIE ── */
+        /* ── NAVIGATION ── */
         #nav {
             flex-shrink: 0;
             height: var(--nav-h);
@@ -192,7 +192,7 @@
         }
 
         /* ══════════════════════════════
-           HOME SCHERM
+           HOME SCREEN
         ══════════════════════════════ */
         .home-hero {
             position: relative;
@@ -289,10 +289,10 @@
         }
 
         /* ══════════════════════════════
-           HERBRUIKBARE COMPONENTEN
+           REUSABLE COMPONENTS
         ══════════════════════════════ */
 
-        /* Volledige breedte afbeelding */
+        /* Full width image */
         .full-img {
             width: 100%;
             display: block;
@@ -307,7 +307,7 @@
             border-bottom: 1px solid var(--border);
         }
 
-        /* Sectie-kop */
+        /* Section heading */
         .sec-head {
             padding: 20px 28px 16px;
         }
@@ -334,7 +334,7 @@
             margin-top: 5px;
         }
 
-        /* Lopende tekst */
+        /* Body text */
         .body {
             padding: 4px 28px 18px;
         }
@@ -348,7 +348,7 @@
 
         .body p:last-child { margin-bottom: 0; }
 
-        /* Citaat-blok */
+        /* Quote block */
         .quote {
             margin: 4px 28px 18px;
             background: var(--bg-elevated);
@@ -370,7 +370,7 @@
             color: var(--text-muted);
         }
 
-        /* Feiten-lijst */
+        /* Fact list */
         .fact-list {
             list-style: none;
             padding: 0 28px 18px;
@@ -394,7 +394,7 @@
 
         .fact-list li:last-child { border-bottom: none; }
 
-        /* Sectie-label (boven een lijst) */
+        /* Section label (above a list) */
         .list-label {
             padding: 6px 28px 10px;
             font-size: 11px;
@@ -403,7 +403,7 @@
             color: var(--gold-dim);
         }
 
-        /* Twee afbeeldingen naast elkaar */
+        /* Two images side by side */
         .img-duo {
             display: flex;
             gap: 8px;
@@ -419,7 +419,7 @@
             display: block;
         }
 
-        /* Gemarkeerde "u bevindt zich hier" band */
+        /* Highlighted "you are here" banner */
         .location-banner {
             margin: 0 28px 18px;
             background: var(--bg-card);
@@ -463,7 +463,7 @@
             line-height: 1.4;
         }
 
-        /* Scheidingslijn */
+        /* Divider */
         .divider {
             height: 1px;
             background: var(--border);
@@ -471,7 +471,7 @@
         }
 
         /* ══════════════════════════════
-           DATERING: theorie-kaarten
+           DATING: theory cards
         ══════════════════════════════ */
         .theory-grid {
             display: grid;
@@ -538,7 +538,7 @@
         .theory-body ul li:last-child { border-bottom: none; }
 
         /* ══════════════════════════════
-           VERHAAL: persoons-kaart
+           STORY: person card
         ══════════════════════════════ */
         .person-card {
             margin: 4px 28px 18px;
@@ -584,7 +584,7 @@
         }
 
         /* ══════════════════════════════
-           VIDEO SCHERM
+           VIDEO SCREEN
         ══════════════════════════════ */
         .video-wrap {
             padding: 0 28px 18px;
@@ -603,7 +603,7 @@
             display: block;
         }
 
-        /* Bodem opvulling */
+        /* Bottom padding */
         .pad-bottom { height: 28px; }
 
     </style>
@@ -615,49 +615,49 @@
     <header id="header">
         <img src="SMV_LOGO_VMM.webp" alt="Vesting Museum Maastricht" class="header-logo">
         <div class="header-inner">
-            <h1>Het Paardengraf van Borgharen</h1>
-            <div class="header-sub">Helpoort · Maastricht · 17e eeuw</div>
+            <h1>The Horse Burial of Borgharen</h1>
+            <div class="header-sub">Helpoort · Maastricht · 17th century</div>
         </div>
-        <a href="index-EN.html" class="lang-switch">
-            <span class="lang-flag">🇬🇧</span>
-            <span class="lang-lbl">EN</span>
+        <a href="index.html" class="lang-switch">
+            <span class="lang-flag">🇳🇱</span>
+            <span class="lang-lbl">NL</span>
         </a>
     </header>
 
-    <!-- ═══ INHOUD ═══ -->
+    <!-- ═══ CONTENT ═══ -->
     <main id="content">
 
         <!-- ────────────────────────────
-             SCHERM 1 — HOME
+             SCREEN 1 — HOME
         ──────────────────────────── -->
         <section id="screen-home" class="screen active">
             <div class="home-hero">
                 <img src="Schilderij-Joseph_parrocel.jpg"
-                     alt="Het beleg van Maastricht, geschilderd door Joseph Parrocel, circa 1673">
+                     alt="The siege of Maastricht, painted by Joseph Parrocel, circa 1673">
                 <div class="home-hero-overlay"></div>
                 <div class="home-hero-text">
-                    <div class="hero-tag">Archeologische ontdekking · 2010</div>
-                    <h2>Het grootste<br>paardengraf van Europa</h2>
+                    <div class="hero-tag">Archaeological discovery · 2010</div>
+                    <h2>The largest<br>horse burial in Europe</h2>
                 </div>
             </div>
             <div class="home-body">
-                <p>In mei 2010 werd bij Borgharen, ten noorden van Maastricht, het grootste paardengraf van Europa ontdekt. Vijfenzestig oorlogspaarden, begraven in één lange greppel — getuigen van een 17e-eeuwse belegering die tot diep in de bodem was weggezonken.</p>
+                <p>In May 2010, the largest horse burial in Europe was discovered near Borgharen, north of Maastricht. Sixty-five warhorses, buried in a single long trench — witnesses to a 17th-century siege that had sunk deep into the ground.</p>
                 <div class="stat-grid">
                     <div class="stat-card">
                         <div class="stat-num">65</div>
-                        <div class="stat-lbl">paardenskeletten in één greppel</div>
+                        <div class="stat-lbl">horse skeletons in one trench</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-num">50 m</div>
-                        <div class="stat-lbl">lengte van de belegeringsgreppel</div>
+                        <div class="stat-lbl">length of the siege trench</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-num">1673</div>
-                        <div class="stat-lbl">meest waarschijnlijke datering</div>
+                        <div class="stat-lbl">most likely dating</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-num">nr. 1</div>
-                        <div class="stat-lbl">grootste paardengraf in Europa</div>
+                        <div class="stat-num">no. 1</div>
+                        <div class="stat-lbl">largest horse burial in Europe</div>
                     </div>
                 </div>
             </div>
@@ -665,217 +665,218 @@
         </section>
 
         <!-- ────────────────────────────
-             SCHERM 2 — DE ONTDEKKING
+             SCREEN 2 — THE DISCOVERY
         ──────────────────────────── -->
-        <section id="screen-ontdekking" class="screen">
+        <section id="screen-discovery" class="screen">
             <img src="Luchtopnames%202010.jpg"
-                 alt="Luchtopname van de opgraving in Borgharen, mei 2010"
+                 alt="Aerial view of the excavation in Borgharen, May 2010"
                  class="full-img" style="max-height: 300px;">
-            <p class="img-caption">Luchtopname van de opgraving · Borgharen, mei 2010 · foto: Ralph Faun</p>
+            <p class="img-caption">Aerial view of the excavation · Borgharen, May 2010 · photo: Ralph Faun</p>
 
             <div class="sec-head">
-                <div class="sec-tag">Mei 2010 · Borgharen</div>
-                <h2 class="sec-title">De Ontdekking</h2>
-                <p class="sec-sub">Een vondst die niemand verwachtte</p>
+                <div class="sec-tag">May 2010 · Borgharen</div>
+                <h2 class="sec-title">The Discovery</h2>
+                <p class="sec-sub">A find no one expected</p>
             </div>
 
             <div class="body">
-                <p>Op een meidag in 2010 leggen archeologen bot na bot bloot tijdens bodemonderzoek van het Consortium Grensmaas aan de Pasestraat in Borgharen. Rugwervels, hoeven, schedels — vrijwel op één lijn. Elke schep vergroot de verbijstering.</p>
-                <p>Uiteindelijk geeft de bodem 65 skeletten prijs, gerangschikt over een lengte van bijna 40 meter. De dieren liggen in onnatuurlijke houdingen met sterk opgetrokken benen of gekromde ruggen — door lijkstijfheid, of de ruwe manier waarop ze de greppel in werden getrokken.</p>
+                <p>On a May day in 2010, archaeologists uncovered bone after bone during a soil survey by Consortium Grensmaas at the Pasestraat in Borgharen. Vertebrae, hooves, skulls — nearly all in one line. Each shovelful deepened the bewilderment.</p>
+                <p>Eventually the ground yielded 65 skeletons, arranged over a length of nearly 40 metres. The animals lay in unnatural positions with legs sharply pulled up or backs arched — due to rigor mortis, or the rough manner in which they were dragged into the trench.</p>
             </div>
 
             <div class="quote">
-                <p>"Het was fantastisch, uniek. Ze lagen helemaal door elkaar; de kop van de een tussen de benen van de ander. En elke dag kwamen er meer botten uit, het hield niet op."</p>
+                <p>"It was fantastic, unique. They were all jumbled together; the head of one between the legs of another. And every day more bones came out, it just wouldn't stop."</p>
             </div>
-            <div class="quote-source">— Mat Delarue, amateurarcheoloog</div>
+            <div class="quote-source">— Mat Delarue, amateur archaeologist</div>
 
             <img src="foto_W.Lem2.jpg"
-                 alt="Open dag bij de opgraving, zomer 2010, met bezoekers en levende paarden"
+                 alt="Open day at the excavation, summer 2010, with visitors and live horses"
                  class="full-img" style="max-height: 260px;">
-            <p class="img-caption">Open dag bij de opgraving, zomer 2010 — bezoekers en paarden bij de vindplaats</p>
+            <p class="img-caption">Open day at the excavation, summer 2010 — visitors and horses at the site</p>
 
             <div class="body">
-                <p>Het paardengraf veroorzaakt in de zomer van 2010 een ware gekte. Bij de open dag wordt de deur platgelopen. Zelfs daarna bezoeken nieuwsgierigen op eigen houtje de vindplaats — soms trekken ze aan poten en verdwijnen hoefijzers.</p>
+                <p>The horse burial caused a real frenzy in the summer of 2010. The open day was swamped with visitors. Even afterwards, curious people visited the site on their own — sometimes pulling at legs and making horseshoes disappear.</p>
             </div>
 
-            <div class="list-label">De vondst in cijfers</div>
+            <div class="list-label">The find in numbers</div>
             <ul class="fact-list">
-                <li>65 paardenskeletten, gestapeld in één belegeringsgreppel</li>
-                <li>De greppel meet circa 50 bij 2 meter</li>
-                <li>Vindplaats: Pasestraat, Borgharen</li>
-                <li>Ontdekt tijdens bodemonderzoek voor het Consortium Grensmaas</li>
-                <li>Nooit eerder werd in Europa zo'n groot paardengraf gevonden</li>
+                <li>65 horse skeletons, stacked in one siege trench</li>
+                <li>The trench measures approximately 50 by 2 metres</li>
+                <li>Location: Pasestraat, Borgharen</li>
+                <li>Discovered during soil research for Consortium Grensmaas</li>
+                <li>Never before had such a large horse burial been found in Europe</li>
             </ul>
             <div class="pad-bottom"></div>
         </section>
 
         <!-- ────────────────────────────
-             SCHERM 3 — DE VONDSTEN
+             SCREEN 3 — THE FINDS
         ──────────────────────────── -->
-        <section id="screen-vondsten" class="screen">
+        <section id="screen-finds" class="screen">
             <div class="sec-head" style="padding-top: 22px;">
-                <div class="sec-tag">Wat is er gevonden?</div>
-                <h2 class="sec-title">De Vondsten</h2>
-                <p class="sec-sub">Skeletten, wapens en paardentuig</p>
+                <div class="sec-tag">What was found?</div>
+                <h2 class="sec-title">The Finds</h2>
+                <p class="sec-sub">Skeletons, weapons and horse equipment</p>
             </div>
 
             <div class="img-duo">
                 <img src="foto_W.Lem1.jpg"
-                     alt="Paardenskeletten in de opgraving, close-up met meetlat">
+                     alt="Horse skeletons in the excavation, close-up with measuring tape">
                 <img src="Skelet%20in%20Helpoort.jpg"
-                     alt="Paardenskelet tentoongesteld in de Helpoort, Maastricht">
+                     alt="Horse skeleton on display in the Helpoort, Maastricht">
             </div>
 
             <div class="location-banner">
                 <div class="location-marker"><span>&#9679;</span></div>
                 <div class="location-text">
-                    <strong>U bevindt zich hier</strong>
-                    <p>Het skelet in deze vitrine is afkomstig uit het paardengraf van Borgharen.</p>
+                    <strong>You are here</strong>
+                    <p>The skeleton in this display case comes from the horse burial of Borgharen.</p>
                 </div>
             </div>
 
-            <div class="list-label">Aangetroffen materiaal</div>
+            <div class="list-label">Material found</div>
             <ul class="fact-list">
-                <li>65 paardenskeletten, overwegend volwassen hengsten</li>
-                <li>Tientallen hoefijzers</li>
-                <li>Loden musketkogels</li>
-                <li>Delen van tuigage en leren riemen</li>
-                <li>Een bronzen gesp</li>
-                <li>In acht schedels: een kogel — bewijs van een genadeschot of frontale charge</li>
+                <li>65 horse skeletons, predominantly adult stallions</li>
+                <li>Dozens of horseshoes</li>
+                <li>Lead musket balls</li>
+                <li>Parts of harness and leather straps</li>
+                <li>A bronze buckle</li>
+                <li>In eight skulls: a bullet — evidence of a mercy shot or frontal charge</li>
             </ul>
 
-            <div class="list-label">De paarden</div>
+            <div class="list-label">The horses</div>
             <ul class="fact-list">
-                <li>Leeftijd: 4 tot 10 jaar — jonge, fitte cavaleriedieren</li>
-                <li>Slank en wendbaar, niet de zware trekpaarden uit de streek</li>
-                <li>Isotopenonderzoek bewijst: niet afkomstig uit de regio Maastricht</li>
-                <li>Breuken en sporen van excessief geweld — ze kwamen van een slagveld</li>
-                <li>Een archeozoölogische studie wees uit dat het vrijwel zeker oorlogspaarden zijn</li>
+                <li>Age: 4 to 10 years — young, fit cavalry horses</li>
+                <li>Slender and agile, not the heavy draft horses from the region</li>
+                <li>Isotope research proves: not from the Maastricht region</li>
+                <li>Fractures and traces of excessive violence — they came from a battlefield</li>
+                <li>An archaeozoological study concluded they were almost certainly warhorses</li>
             </ul>
             <div class="pad-bottom"></div>
         </section>
 
         <!-- ────────────────────────────
-             SCHERM 4 — DATERING
+             SCREEN 4 — DATING
         ──────────────────────────── -->
-        <section id="screen-datering" class="screen">
+        <section id="screen-dating" class="screen">
             <img src="Lodewijck%20XIV%20voor%20Maastricht.jpg"
-                 alt="Lodewijk XIV te paard voor Maastricht, barokke schilderij"
+                 alt="Louis XIV on horseback in front of Maastricht, baroque painting"
                  class="full-img" style="max-height: 320px; object-position: center 20%;">
-            <p class="img-caption">Lodewijk XIV triomfantelijk te paard voor Maastricht · schilderij ca. 1673</p>
+            <p class="img-caption">Louis XIV triumphantly on horseback in front of Maastricht · painting ca. 1673</p>
 
             <div class="sec-head">
-                <div class="sec-tag">Het centrale vraagstuk</div>
-                <h2 class="sec-title">1632 of 1673?</h2>
-                <p class="sec-sub">Twee belegeringen, één massagraf</p>
+                <div class="sec-tag">The central question</div>
+                <h2 class="sec-title">1632 or 1673?</h2>
+                <p class="sec-sub">Two sieges, one mass grave</p>
             </div>
 
             <div class="body">
-                <p>Welke belegering deed de paarden sneuvelen? Er bestaan twee concurrerende theorieën, beide ondersteund door historische bronnen en archeologische vondsten.</p>
+                <p>Which siege caused the horses to perish? There are two competing theories, both supported by historical sources and archaeological finds.</p>
             </div>
 
             <div class="theory-grid">
                 <div class="theory-card">
                     <div class="theory-head">
                         <div class="theory-year">1632</div>
-                        <div class="theory-who">Frederik Hendrik</div>
+                        <div class="theory-who">Frederick Henry</div>
                     </div>
                     <div class="theory-body">
                         <ul>
-                            <li>Beleg op de Spanjaarden</li>
-                            <li>Kaarten tonen paardenschans op exact deze locatie</li>
-                            <li>Bronnen melden hevige ruitergevechten bij Borgharen</li>
-                            <li>Afgevallen na nieuw C14-onderzoek</li>
+                            <li>Siege against the Spanish</li>
+                            <li>Maps show a cavalry redoubt at exactly this location</li>
+                            <li>Sources report fierce cavalry battles near Borgharen</li>
+                            <li>Ruled out after new C14 research</li>
                         </ul>
                     </div>
                 </div>
                 <div class="theory-card highlight">
                     <div class="theory-head">
                         <div class="theory-year">1673</div>
-                        <div class="theory-who">Lodewijk XIV</div>
+                        <div class="theory-who">Louis XIV</div>
                     </div>
                     <div class="theory-body">
                         <ul>
-                            <li>Franse circumvallatie past exact op de vindplaats</li>
-                            <li>Tienduizend cavaleriepaarden bij het beleg</li>                                     <li>Meest waarschijnlijk (Dijkman, 2023)</li>
+                            <li>French circumvallation fits exactly at the site</li>
+                            <li>Ten thousand cavalry horses at the siege</li>
+                            <li>Most likely (Dijkman, 2023)</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div class="body">
-                <p>Nieuwe C14-analyses van paardentanden beperkten de leefperiode tot 1650–1800, waarmee 1632 als optie verviel. Archeoloog Wim Dijkman projecteerde vervolgens de circumvallatielinie van 1673 — de complete ring van grondwallen en grachten waarmee de Fransen Maastricht isoleerden — op de vindplaats.</p>
-                <p>Het paste nagenoeg precies. De Fransen begroeven hun paarden in de belegeringsgracht die ze zelf al hadden gegraven.</p>
+                <p>New C14 analyses of horse teeth restricted the lifespan to 1650–1800, eliminating 1632 as an option. Archaeologist Wim Dijkman then projected the circumvallation line of 1673 — the complete ring of earthworks and ditches with which the French isolated Maastricht — onto the site.</p>
+                <p>It matched almost exactly. The French buried their horses in the siege ditch they had already dug themselves.</p>
             </div>
 
             <div class="quote">
-                <p>"Ze hoefden ze alleen nog maar aan hun benen de greppel in te trekken."</p>
+                <p>"They only had to drag them in by their legs."</p>
             </div>
-            <div class="quote-source">— Wim Dijkman, archeoloog</div>
+            <div class="quote-source">— Wim Dijkman, archaeologist</div>
 
             <div class="pad-bottom"></div>
         </section>
 
         <!-- ────────────────────────────
-             SCHERM 5 — HET VERHAAL
+             SCREEN 5 — THE STORY
         ──────────────────────────── -->
-        <section id="screen-verhaal" class="screen">
+        <section id="screen-story" class="screen">
             <div class="sec-head" style="padding-top: 22px;">
-                <div class="sec-tag">Het onderzoek</div>
-                <h2 class="sec-title">Het Mysterie Ontrafeld</h2>
-                <p class="sec-sub">Hoe Wim Dijkman het raadsel oploste</p>
+                <div class="sec-tag">The research</div>
+                <h2 class="sec-title">The Mystery Solved</h2>
+                <p class="sec-sub">How Wim Dijkman cracked the puzzle</p>
             </div>
 
             <div class="person-card">
                 <img src="Wim%20Dijkman-In%20Helpoort.jpg"
-                     alt="Archeoloog Wim Dijkman bekijkt het skelet in de Helpoort">
+                     alt="Archaeologist Wim Dijkman examining the skeleton in the Helpoort">
                 <div class="person-info">
                     <div class="person-name">Wim Dijkman</div>
-                    <div class="person-role">Archeoloog · Maastricht</div>
-                    <p>Voormalig curator van Centre Céramique. Hij liet op eigen kosten nieuwe C14-analyses uitvoeren en publiceerde zijn bevindingen bij een expositie over de Franse musketiers in Château de Vincennes — het Parijse kasteel waar Lodewijk XIV resideerde vóór Versailles.</p>
+                    <div class="person-role">Archaeologist · Maastricht</div>
+                    <p>Former curator of Centre Céramique. He commissioned new C14 analyses at his own expense and published his findings at an exhibition about the French musketeers at Château de Vincennes — the Parisian castle where Louis XIV resided before Versailles.</p>
                 </div>
             </div>
 
             <div class="body">
-                <p>Het eerste officiële onderzoek wees op 1794 als meest waarschijnlijke datering — het jaar van de Franse Revolutionaire belegering. Het cruciale bewijs: een 18e-eeuws pijpenkopje en een bronzen gesp met paardentuig, gevonden onderin het graf.</p>
-                <p>Dijkman vond dit bewijs te pover. "Ik wilde het zeker weten." Nieuwe C14-technieken dateren de paarden tussen 1650 en 1800 — daarmee viel 1632 weg, maar ook 1794 klopte niet met de archeologische context.</p>
+                <p>The first official research pointed to 1794 as the most likely date — the year of the French Revolutionary siege. The crucial evidence: an 18th-century clay pipe bowl and a bronze buckle with horse harness, found at the bottom of the grave.</p>
+                <p>Dijkman found this evidence too thin. "I wanted to know for certain." New C14 techniques dated the horses between 1650 and 1800 — this ruled out 1632, but 1794 also didn't match the archaeological context.</p>
             </div>
 
             <div class="divider"></div>
 
             <img src="Schilderij-Joseph_parrocel.jpg"
-                 alt="Het beleg van Maastricht door Lodewijk XIV, schilderij Joseph Parrocel"
+                 alt="The siege of Maastricht by Louis XIV, painting by Joseph Parrocel"
                  class="full-img" style="max-height: 240px;">
-            <p class="img-caption">Gevechtsschilder Joseph Parrocel toont het beleg van 1673, met Lodewijk XIV te paard en dode paarden op de voorgrond</p>
+            <p class="img-caption">Battle painter Joseph Parrocel depicts the siege of 1673, with Louis XIV on horseback and dead horses in the foreground</p>
 
             <div class="body">
-                <p>De doorbraak: met moderne georeferentietechnieken projecteerde Dijkman de circumvallatielinie van 1673 op de huidige kaart. De circumvallatie was een complete ring van grondwallen en grachten waarmee de Fransen de stad volledig isoleerden. De linie viel nagenoeg precies samen met de vindplaats van het paardengraf.</p>
-                <p>Van het beleg van 1673 is bovendien bekend dat Lodewijk XIV een enorme troepenmacht te paard meevoerde — naar schatting tienduizend paarden verdeeld over honderden eskadrons. Bij die aantallen is het niet verwonderlijk dat er "hier een aantal het loodje hebben gelegd," aldus Dijkman.</p>
+                <p>The breakthrough: using modern georeferencing techniques, Dijkman projected the circumvallation line of 1673 onto the current map. The circumvallation was a complete ring of earthworks and ditches with which the French completely isolated the city. The line coincided almost exactly with the location of the horse burial.</p>
+                <p>It is also known from the siege of 1673 that Louis XIV brought an enormous mounted force — an estimated ten thousand horses divided among hundreds of squadrons. Given those numbers, it is not surprising that "a number of them met their end here," according to Dijkman.</p>
             </div>
 
             <div class="quote">
-                <p>"Paarden worden in Frankrijk met heel veel respect behandeld. Voor de Zonnekoning zelf waren de edele dieren bovendien onmisbaar voor zijn imago als groot veldheer."</p>
+                <p>"Horses are treated with great respect in France. For the Sun King himself, these noble animals were moreover indispensable to his image as a great military commander."</p>
             </div>
             <div class="quote-source">— Wim Dijkman</div>
 
-            <div class="list-label">Waarom is dit graf zo zeldzaam?</div>
+            <div class="list-label">Why is this burial so rare?</div>
             <ul class="fact-list">
-                <li>Op andere slagveldlocaties werden paardenbotten vroeger als meststof gebruikt</li>
-                <li>Bij de Slag bij Waterloo (20.000 doden) is geen enkel massagraf teruggevonden</li>
-                <li>Het afgelegen ligging van Borgharen heeft het graf onaangetast gelaten</li>
-                <li>Nergens in Europa zijn zoveel oorlogspaarden samen gevonden</li>
+                <li>At other battlefield sites, horse bones were historically used as fertiliser</li>
+                <li>At the Battle of Waterloo (20,000 dead), not a single mass grave has been found</li>
+                <li>The remote location of Borgharen has left the burial undisturbed</li>
+                <li>Nowhere in Europe have so many warhorses been found together</li>
             </ul>
             <div class="pad-bottom"></div>
         </section>
 
         <!-- ────────────────────────────
-             SCHERM 6 — VIDEO
+             SCREEN 6 — VIDEO
         ──────────────────────────── -->
         <section id="screen-video" class="screen">
             <div class="sec-head" style="padding-top: 22px;">
-                <div class="sec-tag">Reportage</div>
-                <h2 class="sec-title">Bekijk het Verhaal</h2>
-                <p class="sec-sub">Het mysterie van het paardengraf</p>
+                <div class="sec-tag">Documentary</div>
+                <h2 class="sec-title">Watch the Story</h2>
+                <p class="sec-sub">The mystery of the horse burial</p>
             </div>
 
             <div class="video-wrap">
@@ -889,7 +890,7 @@
             </div>
 
             <div class="body">
-                <p>Archeoloog Wim Dijkman legt uit waarom het paardengraf van Borgharen toch ouder blijkt dan aanvankelijk gedacht — en hoe hij dit stap voor stap heeft bewezen met nieuwe C14-analyses en historisch kaartmateriaal.</p>
+                <p>Archaeologist Wim Dijkman explains why the horse burial of Borgharen turns out to be older than initially thought — and how he proved this step by step with new C14 analyses and historical map material.</p>
             </div>
 
             <div class="pad-bottom"></div>
@@ -897,57 +898,57 @@
 
     </main>
 
-    <!-- ═══ NAVIGATIE ═══ -->
+    <!-- ═══ NAVIGATION ═══ -->
     <nav id="nav">
-        <button class="nav-btn active" onclick="toonScherm('home', this)">Home</button>
+        <button class="nav-btn active" onclick="showScreen('home', this)">Home</button>
         <div class="nav-sep"></div>
-        <button class="nav-btn" onclick="toonScherm('ontdekking', this)">Ontdekking</button>
+        <button class="nav-btn" onclick="showScreen('discovery', this)">Discovery</button>
         <div class="nav-sep"></div>
-        <button class="nav-btn" onclick="toonScherm('vondsten', this)">Vondsten</button>
+        <button class="nav-btn" onclick="showScreen('finds', this)">Finds</button>
         <div class="nav-sep"></div>
-        <button class="nav-btn" onclick="toonScherm('datering', this)">Datering</button>
+        <button class="nav-btn" onclick="showScreen('dating', this)">Dating</button>
         <div class="nav-sep"></div>
-        <button class="nav-btn" onclick="toonScherm('verhaal', this)">Verhaal</button>
+        <button class="nav-btn" onclick="showScreen('story', this)">Story</button>
         <div class="nav-sep"></div>
-        <button class="nav-btn" onclick="toonScherm('video', this)">Video</button>
+        <button class="nav-btn" onclick="showScreen('video', this)">Video</button>
     </nav>
 
 </div>
 
 <script>
-    function toonScherm(id, knop) {
-        // Verberg alle schermen
+    function showScreen(id, btn) {
+        // Hide all screens
         document.querySelectorAll('.screen').forEach(function(s) {
             s.classList.remove('active');
         });
 
-        // Deactiveer alle navigatieknoppen
+        // Deactivate all navigation buttons
         document.querySelectorAll('.nav-btn').forEach(function(b) {
             b.classList.remove('active');
         });
 
-        // Toon het gevraagde scherm
-        var scherm = document.getElementById('screen-' + id);
-        if (scherm) {
-            scherm.classList.add('active');
-            scherm.scrollTop = 0;
+        // Show the requested screen
+        var el = document.getElementById('screen-' + id);
+        if (el) {
+            el.classList.add('active');
+            el.scrollTop = 0;
         }
 
-        // Activeer de juiste knop
-        if (knop) knop.classList.add('active');
+        // Activate the correct button
+        if (btn) btn.classList.add('active');
     }
 
-    // Voorkom dubbel-tik-zoom op iOS
-    var laatsteTik = 0;
+    // Prevent double-tap zoom on iOS
+    var lastTap = 0;
     document.addEventListener('touchend', function(e) {
-        var nu = Date.now();
-        if (nu - laatsteTik < 300) {
+        var now = Date.now();
+        if (now - lastTap < 300) {
             e.preventDefault();
         }
-        laatsteTik = nu;
+        lastTap = now;
     }, { passive: false });
 
-    // Geen contextmenu
+    // No context menu
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
     });
